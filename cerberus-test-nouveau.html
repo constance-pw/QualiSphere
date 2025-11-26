@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>QualiSphere : US Alignées, Tests Automatisés. La Traçabilité de l'Exigence.</title>
+    <style>
+        /* ========================================================== */
+        /* BASE & TYPOGRAPHIE */
+        /* ========================================================== */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #fcfcfc; 
+            margin: 0; 
+            padding: 30px; 
+            color: #333; 
+            font-weight: 300; 
+        }
+        h1, h3, h4, h5 { font-weight: 400; } 
+        
+        /* 1. QUALISPHERE BRANDING */
+        .header h1 { 
+            color: #6A1B9A; 
+            border-bottom: 2px solid #D1C4E9; 
+            padding-bottom: 10px; 
+            margin-bottom: 15px; 
+            font-size: 2.2em; 
+            font-weight: 300;
+        } 
+        .header p { 
+            color: #777; 
+            font-style: italic; 
+            font-size: 1em; 
+            margin-top: 0; 
+        }
+        
+        /* Menu de sélection des US */
+        .us-selector-header { 
+            background-color: #ffffff; 
+            border-radius: 8px; 
+            padding: 20px 30px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        }
+        .us-tabs-container { display: flex; gap: 15px; flex-wrap: wrap; }
+        .us-tab { 
+            padding: 15px 20px; 
+            cursor: default; 
+            border: 1px solid #eee; 
+            background-color: #f7f7f7; 
+            border-radius: 6px; 
+            transition: all 0.2s; 
+            flex-grow: 1; 
+            min-width: 200px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
+            font-weight: 400; 
+        }
+        .us-tab.active { 
+            background-color: #6A1B9A; 
+            color: white; 
+            font-weight: 500; 
+            border-color: #4527A0; 
+            box-shadow: 0 0 10px rgba(106, 27, 154, 0.4); 
+        }
+        .us-id { font-size: 0.9em; opacity: 0.8; margin-bottom: 3px; font-weight: 300;}
+        .us-tab.active .us-id { opacity: 1; }
+        .us-title { font-size: 1em; line-height: 1.3; }
+        .us-type { font-size: 0.85em; color: #888; margin-top: 5px; font-weight: 300; }
+        .us-tab.active .us-type { color: #f0eaff; }
+
+
+        /* ========================================================== */
+        /* Conteneurs de Section Principaux */
+        /* ========================================================== */
+        .tool-section { 
+            background-color: #ffffff; 
+            border-radius: 8px; 
+            padding: 30px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        }
+
+        /* BLOC 1: Statuts US Agile */
+        #us-statuses-section {
+            background-color: #F8F4FF; 
+            border: 1px solid #E6E0F8; 
+            border-left: 5px solid #6A1B9A; 
+            border-radius: 8px; 
+            padding: 20px 30px;
+            margin-bottom: 40px;
+        }
+        #us-statuses-section h3 {
+            color: #6A1B9A; 
+            border-bottom: 2px solid #D1C4E9; 
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-top: 0;
+        }
+        .us-status-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0 0 15px 0;
+            list-style: none;
+        }
+        .us-status-item {
+            padding: 10px 20px;
+            border-radius: 20px; 
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #fff;
+            min-width: 90px;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+            border: 2px solid transparent;
+            opacity: 0.7;
+            cursor: pointer; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .us-status-item:hover { opacity: 1; }
+        .status-Refining { background-color: #FFC107; color: #333; }
+        .status-ReadyToDev { background-color: #2196F3; } 
+        .status-InDev { background-color: #9C27B0; } 
+        .status-InTest { background-color: #00BCD4; } 
+        .status-Done { background-color: #4CAF50; } 
+
+        .us-status-item.active-status {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+            border: 2px solid #fff;
+            opacity: 1;
+        }
+        
+        /* BLOC 2: AZURE DEVOPS */
+        #azure-devops-main-section h3 { 
+            color: #0078D4; 
+            border-bottom: 2px solid #B3E5FC; 
+            font-size: 1.8em; 
+            font-weight: 300;
+            padding-bottom: 12px; 
+            margin-top: 0; 
+        }
+        #azure-devops-main-section {
+            border-left: 5px solid #0078D4; 
+            padding-left: 25px; 
+        }
+
+        .us-title-content-block {
+             margin-top: 10px;
+             margin-bottom: 15px;
+             font-size: 1.2em;
+             font-weight: 400;
+             color: #333;
+        }
+        .us-title-content-block span { font-weight: 500; }
+        
+        .us-title-section h5, .us-description-section h5, .ca-section h5 { 
+            color: #0078D4; 
+            margin-top: 30px; 
+            border-bottom: none; 
+            padding-bottom: 0; 
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .us-desc-box { 
+            border: 1px solid #f0f0f0; 
+            padding: 20px; 
+            background-color: #FAFAFA; 
+            margin-top: 15px; 
+            border-left: 4px solid #0078D4; 
+            border-radius: 4px; 
+            font-size: 1em; 
+            line-height: 1.6;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            font-weight: 300;
+        }
+        .ca-gherkin {
+            border: 1px solid #f0f0f0; 
+            padding: 20px; 
+            background-color: #FAFAFA;
+            margin-top: 15px; 
+            border-left: 4px solid #0078D4; 
+            border-radius: 4px; 
+            font-size: 1em; 
+            line-height: 1.6;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            font-weight: 300;
+        }
+        .ca-gherkin strong { font-weight: 500; }
+        .ca-gherkin ul { margin-top: 10px; padding-left: 25px; }
+        .ca-gherkin li { margin-bottom: 8px; }
+
+        /* BLOCS D'INFORMATION QA */
+        .qa-toggle-link {
+            display: inline-flex; 
+            align-items: center;
+            margin: 15px 0 25px 0;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #6A1B9A;
+            background-color: #F8F4FF; 
+            border: 1px solid #E6E0F8; 
+            border-radius: 50px; 
+            font-weight: 500;
+        }
+        .qa-toggle-link:hover { background-color: #EFE8FF; }
+        .qa-toggle-link::before { content: '\25B6'; margin-right: 8px; font-size: 0.8em; vertical-align: middle; display: inline-block; transition: transform 0.2s; color: #6A1B9A; }
+        .qa-toggle-link.qa-active::before { content: '\25BC'; }
+
+        .qa-info-block {
+            padding: 20px; 
+            border-radius: 6px; 
+            margin-top: 15px; 
+            margin-bottom: 30px; 
+            font-size: 0.95em;
+            color: #555; 
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .qa-info-block.standard { 
+            background-color: #F7F0FF; 
+            border-left: 5px solid #9C27B0; 
+            border: 1px solid #E6E0F8;
+        } 
+        .qa-info-block.standard h5 { 
+            font-size: 1.1em; 
+            color: #6A1B9A; 
+            font-weight: 500;
+        }
+
+        .qa-info-block.status-refining { background-color: #FFFCE8; border-left: 5px solid #FFC107; border: 1px solid #F8E9C4; }
+        .qa-info-block.status-readytodev { background-color: #E3F2FD; border-left: 5px solid #2196F3; border: 1px solid #BBDEFB; }
+        .qa-info-block.status-indev { background-color: #F3E5F5; border-left: 5px solid #9C27B0; border: 1px solid #E1BEE7; }
+        .qa-info-block.status-intest { background-color: #E0F7FA; border-left: 5px solid #00BCD4; border: 1px solid #B2EBF2; }
+        .qa-info-block.status-done { background-color: #E8FDE8; border-left: 5px solid #4CAF50; border: 1px solid #D4EADD; }
+        
+        .qa-info-block strong { font-weight: 600; color: #333; }
+        .qa-info-block ul { padding-left: 20px; margin-top: 10px; list-style: circle;}
+        .qa-info-block li { margin-bottom: 5px; }
+        
+        /* ========================================================== */
+        /* 4. CERBERUS LOOK (Test Technique) */
+        /* ========================================================== */
+        
+        /* COULEURS CUSTOM DÉFINIES PAR L'UTILISATEUR */
+        /* BORDURES (Définition du type d'élément - Reste en mode RUN) */
+        :root {
+            --color-step-border: rgb(39, 188, 253); /* Steps Gherkin */
+            --color-action-border: rgb(44, 123, 229); /* Actions */
+            --color-control-border: rgb(0, 210, 122); /* Contrôles */
+        }
+        
+        /* FONDS D'EXÉCUTION (Défini par le statut - Utilisé uniquement en mode RUN) */
+        .BG_RUN_OK { background-color: rgb(224, 250, 239) !important; }
+        .BG_RUN_KO { background-color: rgb(252, 231, 235) !important; } /* KO (Bug Dev) */
+        .BG_RUN_FA { background-color: rgb(254, 240, 232) !important; } /* FA (Bug Auto) */
+        
+        /* TITRE DE SECTION CERBERUS */
+        .cerberus-section h3 { 
+            color: var(--color-action-border); /* Utilisation d'une couleur d'Action pour le titre */
+            border-bottom: 2px solid #B3E5FC; 
+            padding-bottom: 12px; 
+            font-size: 1.8em; 
+            font-weight: 300;
+        }
+
+        /* PROPRIÉTÉS CERBERUS */
+        .cerberus-properties-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #E3F2FD;
+            border: 1px solid #BBDEFB;
+            border-left: 5px solid var(--color-action-border); 
+            border-radius: 6px;
+        }
+        .cerberus-properties-box h4 {
+            color: var(--color-action-border); 
+            border-bottom: 1px dashed #BBDEFB;
+            padding-bottom: 8px;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        .property-item {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-right: 12px;
+            margin-bottom: 8px;
+            border: 1px solid #BBDEFB;
+            background-color: #ffffff;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+        .property-item strong { font-weight: 500; color: #333; }
+
+        /* Vues Cerberus */
+        .cerberus-view-wrapper { background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .cerberus-editor-run { 
+            display: flex; 
+            border: 1px solid #eee; 
+            border-radius: 6px; 
+            min-height: 50vh; 
+            margin-top: 15px; 
+            background-color: #ffffff; 
+            overflow: hidden;
+        }
+        .steps-container { width: 40%; border-right: 1px solid #eee; padding: 20px; }
+        .actions-container { width: 60%; padding: 20px; }
+
+        /* -- MODE ÉDITION (ReadyToDev, InDev) -- */
+        .step-block { 
+            border: 1px solid #f0f0f0; 
+            border-left: 4px solid var(--color-step-border); /* BORDURE STEP (Bleu Cyan) */
+            border-radius: 4px; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            cursor: pointer; 
+            background-color: #fff; /* Fond Blanc */
+            box-shadow: 0 0 5px rgba(0,0,0,0.05); 
+            transition: all 0.1s;
+        }
+        .step-block:hover { background-color: #F8FDFF; } /* Petit hover light */
+        .step-block.active { 
+            border: 1px solid var(--color-step-border); /* Bordure complète pour le step actif */
+            border-left: 5px solid var(--color-step-border); 
+            background-color: #F0FCFF; 
+            box-shadow: 0 0 8px rgba(39, 188, 253, 0.4);
+        }
+        .cerberus-role { color: var(--color-step-border); font-weight: 500; margin-bottom: 5px; font-size: 0.9em;}
+        .gherkin-ref { font-style: italic; color: #555; margin-top: 8px; font-size: 0.9em; border-top: 1px dashed #eee; padding-top: 5px; font-weight: 300;}
+
+        /* Style des actions/contrôles cliquables - ÉDITION */
+        .action-list { list-style: none; padding: 0; }
+        .action-item {
+            padding: 10px 15px; 
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
+            font-weight: 300;
+            line-height: 1.4;
+            font-size: 0.95em;
+            border: 1px solid #f0f0f0;
+            border-left-width: 5px;
+            background-color: #fff; /* Fond Blanc */
+        }
+        .action-item:hover {
+            box-shadow: 0 0 8px rgba(44, 123, 229, 0.3); 
+        }
+
+        /* Action */
+        .action-item-action { border-left-color: var(--color-action-border); } 
+        .action-keyword-action { color: var(--color-action-border); font-weight: 600; } 
+        /* Contrôle */
+        .action-item-control { border-left-color: var(--color-control-border); } 
+        .action-keyword-control { color: var(--color-control-border); font-weight: 600; } 
+
+        .action-item ul {
+            list-style: none; 
+            padding-left: 0;
+            margin: 8px 0 0 0;
+            font-size: 0.8em;
+            line-height: 1.5;
+            border-top: 1px dotted #ccc;
+            padding-top: 5px;
+            list-style: disc; 
+            padding-left: 15px;
+            color: #777;
+        }
+        .action-item ul li { margin-bottom: 3px; }
+
+        /* Bloc de code technique */
+        .code-block-container {
+            border: 1px solid #444; 
+            background-color: #272822; 
+            color: #F8F8F2;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .cerberus-blocked { 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background-color: #FBEFEF; 
+            border: 3px dashed #D32F2F; 
+            border-radius: 4px; 
+            flex-direction: column; 
+            padding: 20px; 
+        }
+        
+        /* -- MODE EXÉCUTION DÉTAILLÉE (Steps + Actions Colorées) -- */
+        /* La bordure verticale est conservée via les classes de base (.step-block, .action-item-...) */
+        
+        /* Succès (OK) - Bordure Type + Fond Vert Clair */
+        .step-block.RUN-OK, .action-item.RUN-OK { 
+            background-color: rgb(224, 250, 239) !important; /* Vert très clair */
+            border: 1px solid #d0d0d0; /* Bordure fine neutre */
+            box-shadow: 0 0 5px rgba(39, 188, 253, 0.1); 
+            cursor: default;
+        }
+        /* Échec (KO - Bug Dev) - Bordure Type + Fond Rose Clair */
+        .step-block.RUN-KO, .action-item.RUN-KO { 
+            background-color: rgb(252, 231, 235) !important; /* Rose très clair */
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 0 5px rgba(244, 67, 54, 0.2); 
+            cursor: default;
+        }
+        /* Échec d'automatisation (FA) - Bordure Type + Fond Orange Clair */
+        .step-block.RUN-FA, .action-item.RUN-FA { 
+            background-color: rgb(254, 240, 232) !important; /* Jaune/Orange très clair */
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.2);
+            cursor: default;
+        }
+        
+        /* Couleurs du texte en mode RUN (pour lisibilité) */
+        .step-block.RUN-OK .cerberus-role, .action-item.RUN-OK .action-keyword-action, .action-item.RUN-OK .action-keyword-control { color: #388E3C; }
+        .step-block.RUN-KO .cerberus-role, .action-item.RUN-KO .action-keyword-action, .action-item.RUN-KO .action-keyword-control { color: #D32F2F; }
+        .step-block.RUN-FA .cerberus-role, .action-item.RUN-FA .action-keyword-action, .action-item.RUN-FA .action-keyword-control { color: #E65100; }
+
+        /* Correction des couleurs des mots-clés qui sont surchargées en mode RUN-OK/KO/FA si elles sont dans la liste d'actions */
+        /* Je les ai remonté pour qu'elles aient une meilleure priorité */
+
+
+        /* -- MODE EXÉCUTION LOG (Panneau de Droite) -- */
+        .cerberus-log-view { 
+            display: flex; 
+            height: 65vh; 
+            min-height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: 0 0 15px rgba(39, 188, 253, 0.1); 
+        }
+        
+        /* Panneau de Gauche (Synthèse/Rapport) */
+        .run-summary-panel {
+            width: 35%;
+            padding: 25px; 
+            background-color: #F8FDFF; /* Fond clair */
+            border-right: 1px solid #FFEDD5; 
+            display: flex;
+            flex-direction: column;
+        }
+        .run-summary-panel h4 { 
+            font-weight: 500;
+            color: var(--color-action-border); 
+            border-bottom: 2px solid #BBDEFB; 
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+
+        .summary-banner {
+            padding: 18px; 
+            margin-bottom: 25px;
+            border-radius: 8px; 
+            color: #fff;
+            font-weight: 700; 
+            text-align: center;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .summary-banner.OK { background-color: #4CAF50; }
+        .summary-banner.KO { background-color: #F44336; }
+        .summary-banner.FA { background-color: #FF9800; }
+
+        .report-details { margin-top: 15px; font-size: 0.95em; line-height: 1.6;} 
+        .report-details p { margin: 10px 0; }
+        .report-details strong { font-weight: 600; color: #333; }
+        
+        .report-proof-link {
+            display: block;
+            margin-top: auto; 
+            padding: 12px;
+            background-color: #c9e6ff; 
+            border: 1px solid var(--color-action-border);
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .report-proof-link:hover { background-color: var(--color-action-border); color: white; }
+
+
+        /* Panneau de Droite (Journal d'Exécution) */
+        .run-log-panel {
+            width: 65%;
+            background-color: #fff;
+            padding: 15px; 
+            overflow-y: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.8em; 
+        }
+        .run-log-panel h4 { margin-top: 0; color: #555; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+
+        .log-entry {
+            display: block;
+            padding: 4px 8px; 
+            margin-bottom: 3px; 
+            white-space: pre-wrap;
+            line-height: 1.4;
+            border-left: 4px solid transparent; 
+            background-color: #fafafa;
+        }
+
+        /* Couleurs du statut des logs */
+        .log-entry.INFO { background-color: #fcfcfc; color: #777; border-left-color: #ccc; }
+        .log-entry.STEP { background-color: #E3F2FD; border-left-color: var(--color-step-border); color: #1565C0; font-weight: 600; } /* Couleur Step */
+        .log-entry.OK { background-color: #E8FDE8; color: #388E3C; border-left-color: #4CAF50; } 
+        .log-entry.KO { background-color: #FFEBEE; color: #D32F2F; border-left-color: #F44336; font-weight: 600; } 
+        .log-entry.FA { background-color: #FFF3E0; color: #E65100; border-left-color: #FF9800; font-weight: 600; } 
+        /* Contrôles */
+        .log-entry.CONTROL_OK { background-color: #DCEEFD; border-left-color: var(--color-control-border); color: var(--color-control-border); } /* Couleur Contrôle */
+        .log-entry.CONTROL_KO { background-color: #FFE0B2; border-left-color: #FF9800; color: #E65100; font-weight: 600; } 
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>✨ QualiSphere</h1>
+    <p>US Alignées, Tests Automatisés. La Traçabilité de l'Exigence.</p>
+</div>
+
+<div class="us-selector-header">
+    <h4>Contexte de la User Story</h4>
+    <div class="us-tabs-container">
+        <div class="us-tab active" data-us="us123">
+            <div class="us-id"></div>
+            <div class="us-title"></div>
+            <div class="us-type">Démonstration du cycle de vie agile</div>
+        </div>
+    </div>
+</div>
+
+<div class="tool-section" id="us-statuses-section">
+    <h3>1. Statuts US Agile (Cycle de Vie) 🔄 <span style="font-size: 0.6em; color: #6A1B9A;">(Cliquez pour changer la vue)</span></h3>
+    <ul class="us-status-list">
+        <li class="us-status-item status-Refining" id="status-Refining">Refining (Comprendre)</li>
+        <li class="us-status-item status-ReadyToDev" id="status-ReadyToDev">Ready to Dev (Préparer)</li>
+        <li class="us-status-item status-InDev" id="status-InDev">In Dev (Affiner)</li>
+        <li class="us-status-item status-InTest" id="status-InTest">In Test (Exécuter)</li>
+        <li class="us-status-item status-Done" id="status-Done">Done (Valider qualité)</li>
+    </ul>
+
+    <div class="qa-info-block qa-hidden" id="status-info-card" style="display:none;">
+        <p><strong style="font-size: 1.1em;">Statut Agile et Action QA :</strong> <span id="status-message-qa"></span></p>
+        <p id="status-action-qa" style="margin-top: 5px;"></p>
+    </div>
+</div>
+
+
+<div class="tool-section" id="azure-devops-main-section">
+    <h3>2. Azure DevOps : L'Exigence (Input PO) & Analyse QA</h3>
+    
+    <div class="us-title-section">
+        <h5>Titre US (Valeur métier)</h5>
+        
+        <div class="us-title-content-block">
+            📖 USER STORY <span id="azdo-us-id"></span> : <span id="azdo-title-content-h4"></span>
+        </div>
+        
+        <a class="qa-toggle-link" data-qa-target="qa-title-analysis">Afficher l'Analyse QA / Impact Test sur le Titre</a>
+        
+        <div class="qa-info-block standard qa-hidden" id="qa-title-analysis" style="display:none;">
+            <h5>Analyse du Titre (Valeur Métier)</h5>
+            <p>Le titre doit être **clair** et centré sur la **valeur métier** (le pourquoi) pour valider l'alignement PO/QA. <br/>
+            **Rôle PO :** Rédiger un titre concis.
+            </p>
+        </div>
+    </div>
+
+    <div class="us-description-section">
+        <h5>Description (Fonctionnelle)</h5>
+        
+        <div class="us-desc-box">
+            <p id="azdo-desc-content"></p>
+        </div>
+        
+        <a class="qa-toggle-link" data-qa-target="qa-desc-analysis">Afficher l'Analyse QA / Impact Test sur la Description</a>
+        
+        <div class="qa-info-block standard qa-hidden" id="qa-desc-analysis" style="display:none;">
+            <h5>Analyse de la Description (Périmètre)</h5>
+            <p>La description définit le **périmètre fonctionnel** (le "QUOI"). Sa clarté est essentielle pour éviter les tests hors-sujet. <br/>
+            **Rôle PO :** Définir le besoin (En tant que/Je veux/Afin de).
+            </p>
+        </div>
+    </div>
+
+    <div class="ca-section">
+        <h5>Critères d'Acceptation (Testabilité PO/QA)</h5>
+        
+        <div id="azdo-ca-content">
+            </div>
+
+        <a class="qa-toggle-link" data-qa-target="qa-ca-analysis">Afficher l'Analyse QA / Impact Test sur les Critères d'Acceptation</a>
+        
+        <div class="qa-info-block standard qa-hidden" id="qa-ca-analysis" style="display:none;">
+            <h5>Analyse des Critères d'Acceptation (Mesurabilité)</h5>
+            <p>Les CAs (format Gherkin) sont le contrat PO/QA. Ils traduisent le besoin en scénarios **mesurables**.</p>
+            <ul>
+                <li>**Rôle QA :** S'assurer que le "ALORS" est **quantifiable** et complet (ex: "en moins de 3 secondes", "le message X est affiché").</li>
+                <li>**Rôle PO :** Valider les CAs comme contrat de recette.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="tool-section cerberus-section">
+    <h3>3. Cerberus : Découpage du Test (Le "Comment" du QA)</h3>
+
+    <div class="cerberus-properties-box">
+        <h4>Paramètres du Test Case (Propriétés)</h4>
+        <div id="cerberus-properties-content">
+            </div>
+    </div>
+
+    <div class="cerberus-view-wrapper">
+        <p id="scenario-name"><strong>Scénario Testé :</strong></p>
+        
+        <div class="cerberus-editor-run" id="cerberus-editor-run">
+            </div>
+        
+        <div class="cerberus-log-view" id="cerberus-log-view" style="display:none;">
+            <div class="run-summary-panel">
+                <h4>Synthèse du Rapport d'Exécution</h4>
+                <div class="summary-banner" id="run-summary-banner"></div>
+                <div class="report-details" id="run-report-details"></div>
+                <a href="#" class="report-proof-link">Détail des Preuves & Captures d'Écran (Report ID)</a>
+            </div>
+            <div class="run-log-panel" id="run-log-panel">
+                </div>
+        </div>
+    </div>
+
+    <div class="code-block-container" id="technical-code-container" style="display:none;">
+        <pre id="technical-code"></pre>
+    </div>
+</div>
+
+<script>
+    const codeSnippets = {
+        // Actions
+        "Open Application": `<span class="variable">driver</span> = <span class="function">selenium.webdriver</span>.<span class="variable">Chrome</span>(<span class="variable">options</span>)`,
+        "Open Url": `<span class="variable">driver</span>.<span class="function">get</span>(<span class="string">"https://baseurl/store/home"</span>)`,
+        "Click": `<span class="variable">driver</span>.<span class="function">find_element</span>(<span class="variable">By</span>.<span class="variable">ID</span>, <span class="string">"importBtn"</span>).<span class="function">click</span>()`,
+        "Feed field": `
+<span class="comment"># Utilisation de la variable générée (Propriété du Test Case)</span>
+<span class="variable">user_email</span> = <span class="string">"[[RandomEmail]]"</span>
+<span class="variable">driver</span>.<span class="function">find_element</span>(<span class="variable">By</span>.<span class="variable">ID</span>, <span class="string">"emailInput"</span>).<span class="function">send_keys</span>(<span class="variable">user_email</span>)
+        `,
+        "Upload File to Robot": `<span class="comment"># Simuler le téléchargement du fichier de test via l'environnement du robot</span>
+<span class="variable">driver</span>.<span class="function">find_element</span>(<span class="variable">By</span>.<span class="variable">NAME</span>, <span class="string">"file-input"</span>).<span class="function">send_keys</span>(<span class="string">"data/150_lines_valid.csv"</span>)`,
+        "Call Service": `
+<span class="variable">response</span> = <span class="function">http_client</span>.<span class="function">get</span>(<span class="string">"/api/products/123"</span>, <span class="variable">headers</span>={<span class="string">"X-API-KEY"</span>: <span class="string">"[[API_KEY]]"</span>})
+<span class="comment"># L'objet 'response' est stocké pour l'étape de contrôle suivante.</span>
+        `,
+        "Start Timer": `
+<span class="comment"># Action Système (nécessaire à Numeric Comparison)</span>
+<span class="variable">timer</span> = <span class="function">time</span>.<span class="function">time</span>() 
+        `,
+        "Execute Javascript Command": `<span class="comment"># Exécuter un script JS pour redimensionner la fenêtre du navigateur (mobile/desktop)</span>
+<span class="variable">driver</span>.<span class="function">execute_script</span>(<span class="string">"window.resize(375, 812)"</span>)`,
+
+        // Contrôles
+        "Verify Text in Page": `<span class="keyword">assert</span> <span class="string">"Importation réussie"</span> <span class="keyword">in</span> <span class="variable">driver</span>.<span class="function">page_source</span>`,
+        "Numeric Comparison": `
+<span class="comment"># Le contrôle utilise le Timer ID et vérifie que la valeur est <= 3.0</span>
+<span class="keyword">assert</span> (<span class="function">time</span>.<span class="function">time</span>() - <span class="variable">timer</span>) <span class="keyword">&lt;=</span> <span class="variable">3.0</span>, <span class="string">"Perf Failure: > 3s"</span>
+        `,
+        "Verify Element": `<span class="keyword">assert</span> <span class="variable">driver</span>.<span class="function">find_element</span>(<span class="variable">By</span>.<span class="variable">CSS_SELECTOR</span>, <span class="string">".success-message"</span>).<span class="function">is_displayed</span>()`,
+        "Verify JSON": `
+<span class="comment"># Contrôle du code de statut HTTP et de la structure JSON (Simule "Verify Json Format")</span>
+<span class="keyword">assert</span> <span class="variable">response</span>.<span class="function">status_code</span> == <span class="variable">200</span>
+<span class="keyword">assert</span> <span class="variable">response</span>.<span class="function">json</span>()[<span class="string">'product_id'</span>] == <span class="string">"123"</span>
+<span class="keyword">assert</span> <span class="variable">response</span>.<span class="function">json</span>()[<span class="string">'status'</span>] == <span class="string">"active"</span>
+        `,
+        "Take a Screenshot": `<span class="variable">driver</span>.<span class="function">save_screenshot</span>(<span class="string">"proofs/menu_mobile.png"</span>)`,
+        "Calculate Property": `<span class="variable">tc_variable</span>[<span class="string">'AuthorizationHeader'</span>] = <span class="string">"Bearer "</span> + <span class="variable">API_KEY</span>`,
+    };
+
+    // Données de la User Story UNIQUE
+    const baseScenario = {
+        id: "57767", 
+        title: "Importation rapide de commandes volumineuses via CSV",
+        desc: "<strong>En tant que</strong> Alice (Responsable Achat Stratégique), <strong>je veux</strong> pouvoir importer une liste d'articles depuis un fichier CSV, <strong>afin de</strong> passer rapidement des commandes volumineuses sans erreurs de saisie.",
+        cas: `<div class="ca-gherkin"><p><strong>CA 1 (Validité & Performance) :</strong></p><ul><li>**ÉTANT DONNÉ** que je suis connectée en tant qu'Alice et que j'ai un CSV de 150 lignes valides,</li><li>**QUAND** j'importe ce fichier via la fonctionnalité dédiée,</li><li>**ALORS** les 150 articles sont ajoutés au panier **en moins de 3 secondes** (Vérification QA Technique) et le message "Importation réussie" s'affiche (Vérification PO/QA Fonctionnel).</li></ul><div style="margin-top: 15px; border-left: 5px solid red; padding-left: 10px; font-weight: 500;">Note du PO/QA : Le Critère d'Acceptation est **mesurable** car il spécifie une durée (< 3 secondes). C'est le standard "Ready to Dev".</div></div>`,
+        scenarioName: "TC-101 (US-57767) : Import CSV - Nominal & Performance (< 3s)",
+        properties: [
+            { name: "Application", value: "E-Commerce V2 (Web)" },
+            { name: "Browser", value: "Chrome" },
+            { name: "Global Timeout", value: "90 seconds" }
+        ],
+        steps: [
+            { role: "QA (Préparation - ÉTANT DONNÉ)", gherkin: "Préparation du contexte utilisateur et de la page d'importation.", status: "OK", actions: [ // Statut OK
+                { type: "ACTION", keyword: "Open Application", desc: "Initialiser une session de navigateur.", params: [{ name: "Browser", value: "Chrome" }], status: "OK" }, 
+                { type: "ACTION", keyword: "Open Url", desc: "Naviguer vers l'interface d'importation.", params: [{ name: "URL", value: "/orders/import/" }], status: "OK" }
+            ] },
+            { role: "QA (Action - QUAND)", gherkin: "Déclenchement de l'importation du fichier CSV.", status: "KO", actions: [ // Statut KO
+                { type: "ACTION", keyword: "Start Timer", desc: "Déclenchement du chronomètre (Action Système/Interne, nécessaire au Control de temps).", params: [{ name: "Timer ID", value: "load_csv" }], status: "OK" }, 
+                { type: "ACTION", keyword: "Click", desc: "Cliquer sur le bouton 'Importer CSV'.", params: [{ name: "Object", value: "ImportButton" }, { name: "Locator", value: "ID=importBtn" }], status: "OK" }, 
+                { type: "ACTION", keyword: "Upload File to Robot", desc: "Sélectionner le fichier de données (150 lignes) sur le système du Robot.", params: [{ name: "Input Object", value: "FileInput" }, { name: "File Name", value: "150_lines_valid.csv" }], status: "KO" }
+            ] },
+            { role: "QA (Vérification - ALORS)", gherkin: "Vérification du succès fonctionnel et du critère de performance.", status: "OK", actions: [ // Statut OK
+                { type: "CONTROL", keyword: "Numeric Comparison", desc: "Contrôle automatique de l'exigence de performance : `Timer <= 3.0`", params: [{ name: "Property 1 (Timer ID)", value: "load_csv" }, { name: "Comparator", value: "Lower or Equal" }, { name: "Property 2 (Value)", value: "3.0" }], status: "OK" }, 
+                { type: "CONTROL", keyword: "Verify Text in Page", desc: "Vérification du message fonctionnel 'Importation réussie'.", params: [{ name: "Text", value: "Importation réussie" }], status: "OK" }, 
+                { type: "CONTROL", keyword: "Verify Text in Page", desc: "Vérification que '150 articles' sont affichés (Vérification fonctionnelle).", params: [{ name: "Text", value: "150 articles ajoutés" }], status: "OK" }
+            ] }
+        ],
+        executionResult: { 
+            // Cas par défaut pour Done (Succès fonctionnel)
+            successOK: { 
+                status: "OK", 
+                date: "15/11/2025 à 10:30", 
+                reason: "Le Test Case a réussi tous les Contrôles, incluant la validation fonctionnelle et le critère de performance (< 3s). **US validée Qualité.**",
+                log: [
+                    { type: "INFO", message: "Début de l'exécution du Test Case TC-101..." },
+                    { type: "STEP", message: "ÉTAPE 1 (Préparation du contexte utilisateur et de la page d'importation)" },
+                    { type: "OK", message: "Action [Open Application] : Session Chrome initialisée." },
+                    { type: "OK", message: "Action [Open Url] : Navigué vers /orders/import/." },
+                    { type: "STEP", message: "ÉTAPE 2 (Déclenchement de l'importation du fichier CSV)" },
+                    { type: "OK", message: "Action [Start Timer] : Chronomètre 'load_csv' démarré." },
+                    { type: "OK", message: "Action [Click] : Bouton ImportButton cliqué." },
+                    { type: "OK", message: "Action [Upload File to Robot] : Fichier '150_lines_valid.csv' uploadé." },
+                    { type: "STEP", message: "ÉTAPE 3 (Vérification du succès fonctionnel et du critère de performance)" },
+                    { type: "CONTROL_OK", message: "Contrôle [Numeric Comparison] : Temps d'exécution (2.1s) est bien <= 3.0s. (Critère de Performance : OK)" },
+                    { type: "CONTROL_OK", message: "Contrôle [Verify Text in Page] : Le message 'Importation réussie' est affiché." },
+                    { type: "CONTROL_OK", message: "Contrôle [Verify Text in Page] : Le texte '150 articles ajoutés' est affiché." },
+                    { type: "INFO", message: "Fin de l'exécution : Succès. Temps total: 4.8s." }
+                ],
+                // Mise à jour des status des Steps pour OK
+                stepsStatus: ["OK", "OK", "OK"] 
+            },
+            // Cas de test pour InTest (Échec fonctionnel / Bug Dev)
+            failureKO: { 
+                status: "KO", 
+                date: "20/11/2025 à 14:15", 
+                reason: "Échec du contrôle de Performance. Le temps d'importation a dépassé les 3 secondes spécifiées dans le CA. **Bug à créer pour l'équipe Dev.**",
+                log: [
+                    { type: "INFO", message: "Début de l'exécution du Test Case TC-101..." },
+                    { type: "STEP", message: "ÉTAPE 1 (Préparation du contexte utilisateur et de la page d'importation)" },
+                    { type: "OK", message: "Action [Open Application] : Session Chrome initialisée." },
+                    { type: "OK", message: "Action [Open Url] : Navigué vers /orders/import/." },
+                    { type: "STEP", message: "ÉTAPE 2 (Déclenchement de l'importation du fichier CSV)" },
+                    { type: "OK", message: "Action [Start Timer] : Chronomètre 'load_csv' démarré." },
+                    { type: "OK", message: "Action [Click] : Bouton ImportButton cliqué." },
+                    { type: "OK", message: "Action [Upload File to Robot] : Fichier '150_lines_valid.csv' uploadé." },
+                    { type: "STEP", message: "ÉTAPE 3 (Vérification du succès fonctionnel et du critère de performance)" },
+                    { type: "CONTROL_KO", message: "Contrôle [Numeric Comparison] : **ÉCHEC !** Temps d'exécution (4.5s) est > 3.0s. (Critère de Performance : KO)" },
+                    { type: "CONTROL_OK", message: "Contrôle [Verify Text in Page] : Le message 'Importation réussie' est affiché. (Le bug est sur la perf, pas la fonction)" },
+                    { type: "INFO", message: "Fin de l'exécution : Échec sur le Critère d'Acceptation de Performance. Temps total: 6.2s." }
+                ],
+                // Mise à jour des status des Steps pour KO
+                stepsStatus: ["OK", "OK", "KO"] 
+            },
+            // Cas de test alternatif pour InTest (Échec d'automatisation / Bug QA)
+            failureFA: { 
+                status: "FA", 
+                date: "21/11/2025 à 09:00", 
+                reason: "L'exécution a échoué suite à une erreur SQL (étape de préparation du contexte). La syntaxe de l'Action SQL est incorrecte. **Correction à apporter par l'équipe QA.**",
+                log: [
+                    { type: "INFO", message: "Début de l'exécution du Test Case TC-101..." },
+                    { type: "STEP", message: "ÉTAPE 1 (Préparation du contexte utilisateur et de la page d'importation)" },
+                    { type: "FA", message: "Action [Open Application] : **ÉCHEC !** Erreur de connexion au DNS. (Erreur liée à la config du Robot de test, pas l'application testée)" },
+                    { type: "INFO", message: "Fin de l'exécution : Échec sur l'automatisation. Le test n'a pas pu commencer la vérification fonctionnelle/performance." }
+                ],
+                // Mise à jour des status des Steps pour FA
+                stepsStatus: ["FA", "FA", "FA"] // On met tous les suivants à FA par convention
+            }
+        }
+    };
+
+    // Contenu des messages de statut QA 
+    const statusMessages = {
+        "Refining": {
+            message: "L'exigence présente des **ambiguïtés** ou des CAs non mesurables.",
+            action: "<strong>Action QA/Cerberus :</strong> **BLOCAGE** de l'automatisation. Le PO doit clarifier l'exigence pour passer à **Ready to Dev** (DoR non validée)."
+        },
+        "ReadyToDev": {
+            message: "L'exigence est stable et complète. **Feu vert pour la conception du test** (DoR validée).",
+            action: "<strong>Action QA/Cerberus :</strong> Créer la **structure** du Test Case (Nom, Propriétés, Étapes Gherkin) dans Cerberus. Le développement des Actions et Contrôles est en attente."
+        },
+        "InDev": {
+            message: "L'exigence est en développement. Le Test Case est en cours d'**automatisation détaillée**.",
+            action: "<strong>Action QA/Cerberus :</strong> Renseigner les **Actions/Contrôles** (étapes atomiques) dans Cerberus et valider avec le développeur."
+        },
+        "InTest": {
+            message: "Le code est déployé en environnement de test. Le Test Case est **exécuté** automatiquement.",
+            action: "<strong>Action QA/Cerberus :</strong> Analyser le **Rapport d'Exécution** et les résultats. Le statut sera mis à jour après la validation. (Simule **KO** ou **FA**)"
+        },
+        "Done": {
+            message: "L'exigence est terminée et validée. Le Test Case est **finalisé** et intégré à la non-régression.",
+            action: "<strong>Action QA/Cerberus :</strong> Le Test Case est désormais un actif de l'entreprise. S'assurer qu'il est inclus dans le **Smoke Test** ou la Régression Nocturne. (Simule **OK**)"
+        }
+    };
+
+
+    let activeStepIndex = 0;
+    let activeStatusKey = 'InTest'; 
+    let activeExecutionStatus = 'KO'; 
+
+    // La fonction principale de rendu, pilotée par le statut
+    function renderQualiSphere(statusKey, executionStatus = 'OK') {
+        activeStatusKey = statusKey;
+        activeExecutionStatus = executionStatus;
+        const scenario = baseScenario;
+
+        // 1. Mettre à jour la section STATUT (Bloc 1)
+        updateQaBlocks(statusKey);
+        
+        // 2. Mettre à jour la section AZDO (Bloc 2 - US statique)
+        renderAzdoContent(scenario);
+        
+        // 3. Mettre à jour la section CERBERUS (Bloc 3)
+        const cerberusEditorRun = document.getElementById('cerberus-editor-run');
+        const cerberusLogView = document.getElementById('cerberus-log-view');
+        
+        // Nettoyage et Affichage/Masquage des vues
+        cerberusEditorRun.innerHTML = ''; // Nettoyer le contenu pour éviter les doublons/mélanges
+        cerberusEditorRun.style.display = 'flex';
+        cerberusLogView.style.display = 'none'; 
+        
+        // Cacher le code technique au changement de statut
+        document.getElementById('technical-code-container').style.display = 'none';
+        document.getElementById('technical-code-container').style.opacity = '0';
+
+        document.getElementById('scenario-name').innerHTML = `<strong>Scénario Testé :</strong> <span style="color: #6A1B9A;">${scenario.scenarioName}</span>`;
+
+        // Affichage des Propriétés (statiques)
+        const propertiesContent = document.getElementById('cerberus-properties-content');
+        propertiesContent.innerHTML = '';
+        if (scenario.properties && scenario.properties.length > 0) {
+            scenario.properties.forEach(prop => {
+                const propItem = document.createElement('span');
+                propItem.className = 'property-item';
+                propItem.innerHTML = `<strong>${prop.name} :</strong> ${prop.value}`;
+                propertiesContent.appendChild(propItem);
+            });
+        }
+        
+        // Logique de BLOCAGE/RÉSULTAT DYNAMIQUE
+        if (statusKey === 'Refining') {
+            cerberusEditorRun.style.display = 'flex';
+            const blockedDiv = document.createElement('div');
+            blockedDiv.className = 'cerberus-blocked';
+            blockedDiv.style.minHeight = '40vh'; 
+            blockedDiv.innerHTML = `
+                <h5>AUTOMATISATION SUSPENDUE 🛑 : US en REFINING !</h5>
+                <p>Le QA ne peut pas créer de tests stables car l'exigence (Critères d'Acceptation) est encore en cours d'écriture ou de validation. <br/>
+                **C'est le rôle de QualiSphere de bloquer l'automatisation à ce stade.**</p>
+                <p>L'outil Cerberus est en attente du statut **Ready to Dev** (voir l'Analyse QA ci-dessus).</p>
+            `;
+            cerberusEditorRun.innerHTML = '';
+            cerberusEditorRun.appendChild(blockedDiv);
+            return; 
+        }
+        
+        // Affichage du MODE EXÉCUTION (Steps/Actions colorées + Log)
+        if (statusKey === 'InTest' || statusKey === 'Done') {
+            cerberusLogView.style.display = 'flex'; // Affiche le panneau de Log
+            // L'éditeur reste visible pour la vue détaillée (Steps/Actions)
+            renderRunLogView(scenario, executionStatus);
+            return;
+        }
+
+
+        // Affichage du MODE ÉDITION (ReadyToDev / InDev - Bordure Type + Fond Blanc)
+        cerberusEditorRun.style.display = 'flex';
+        
+        const stepsContainer = document.createElement('div');
+        const actionsContainer = document.createElement('div');
+        
+        // Nettoyage pour le mode édition
+        cerberusEditorRun.innerHTML = ''; 
+
+        cerberusEditorRun.appendChild(stepsContainer);
+        cerberusEditorRun.appendChild(actionsContainer);
+        
+        stepsContainer.className = 'steps-container';
+        actionsContainer.className = 'actions-container';
+
+        
+        // Construction des Steps Gherkin (Mode Édition)
+        stepsContainer.innerHTML = '<h4>Étapes Fonctionnelles (Steps Gherkin)</h4>';
+        scenario.steps.forEach((step, index) => {
+            const stepBlock = document.createElement('div');
+            // La classe "active" ajoute une bordure complète pour le focus, sinon la bordure verticale (step-block) est simple
+            stepBlock.className = `step-block ${index === activeStepIndex ? 'active' : ''}`;
+            stepBlock.setAttribute('data-step-index', index);
+            stepBlock.addEventListener('click', () => {
+                activeStepIndex = index;
+                renderQualiSphere(activeStatusKey, activeExecutionStatus);
+            });
+            
+            stepBlock.innerHTML = `
+                <span class="cerberus-role">${step.role}</span>
+                <strong>Step ${index + 1}</strong>
+                <div class="gherkin-ref">${step.gherkin}</div>
+            `;
+            stepsContainer.appendChild(stepBlock);
+        });
+        
+        // Construction des Actions/Contrôles (Mode Édition)
+        actionsContainer.innerHTML = '<h4>Actions (Bleu) & Contrôles (Vert)</h4>';
+
+        if (statusKey === 'ReadyToDev') {
+            actionsContainer.innerHTML += `
+                <div class="pending-actions-message">
+                    <h5 style="margin-top: 0; font-weight: 500;">ACTIONS/CONTRÔLES EN ATTENTE ⏳</h5>
+                    <p style="font-style: italic; color: #555; margin-bottom: 0;">
+                        Le statut **Ready to Dev** signifie que le QA a défini la structure du test (Steps Gherkin). 
+                        L'implémentation des commandes techniques (Actions/Contrôles) est le travail de la phase **IN DEV** (développement par le QA de l'automatisation).
+                    </p>
+                </div>
+            `;
+        } else { // InDev
+            const infoP = document.createElement('p');
+            infoP.style.fontStyle = 'italic';
+            infoP.style.color = '#777';
+            infoP.style.fontWeight = '300';
+            infoP.innerHTML = "Le QA traduit les étapes Gherkin en commandes Cerberus (**Actions** et **Contrôles**) pour automatiser le scénario. **Cliquez** sur une commande pour voir le code source.";
+            actionsContainer.appendChild(infoP);
+
+            const actionList = document.createElement('ul');
+            actionList.className = 'action-list';
+
+            const activeStep = scenario.steps[activeStepIndex];
+
+            activeStep.actions.forEach((action) => {
+                const isControl = action.type === 'CONTROL';
+                const itemClass = isControl ? 'action-item-control' : 'action-item-action';
+                const keywordClass = isControl ? 'action-keyword-control' : 'action-keyword-action';
+                const icon = isControl ? 'Contrôle :' : 'Action :';
+                
+                const actionItem = document.createElement('li');
+                actionItem.className = `action-item ${itemClass}`;
+                actionItem.setAttribute('data-keyword', action.keyword);
+                actionItem.addEventListener('click', function() {
+                    displayTechnicalCode(this.getAttribute('data-keyword'));
+                });
+
+                let paramsHtml = '';
+                if (action.params && action.params.length > 0) {
+                    paramsHtml = '<ul>';
+                    action.params.forEach(param => {
+                        const paramColor = isControl ? 'var(--color-control-border)' : 'var(--color-action-border)';
+                        paramsHtml += `<li><strong style="color: ${paramColor};">${param.name}:</strong> ${param.value}</li>`;
+                    });
+                    paramsHtml += '</ul>';
+                }
+
+                actionItem.innerHTML = `
+                    <span class="${keywordClass}">${icon} ${action.keyword}</span>
+                    <p>${action.desc}</p>
+                    ${paramsHtml} 
+                `;
+                actionList.appendChild(actionItem);
+            });
+            actionsContainer.appendChild(actionList);
+        }
+    }
+    
+    // NOUVELLE FONCTION: Gère l'affichage des résultats d'exécution (InTest et Done)
+    function renderRunLogView(scenario, executionStatus) {
+        let resultData;
+        if (executionStatus === 'OK') {
+            resultData = scenario.executionResult.successOK;
+        } else if (executionStatus === 'KO') {
+             resultData = scenario.executionResult.failureKO;
+        } else {
+             resultData = scenario.executionResult.failureFA;
+        }
+        
+        const summaryBanner = document.getElementById('run-summary-banner');
+        const reportDetails = document.getElementById('run-report-details');
+        const logPanel = document.getElementById('run-log-panel');
+        
+        // 1. Panneau de Gauche (Rapport)
+        summaryBanner.className = `summary-banner ${resultData.status}`;
+        summaryBanner.textContent = `RÉSULTAT GLOBAL : ${resultData.status}`;
+        
+        reportDetails.innerHTML = `
+            <p><strong>Rapport ID :</strong> ${scenario.id}-${resultData.status}-20251120</p>
+            <p><strong>Statut :</strong> ${resultData.reason}</p>
+            <p><strong>Exécuté le :</strong> ${resultData.date}</p>
+            <p><strong>Auteur :</strong> Robot Selenium/API (par Alice A.)</p>
+        `;
+        
+        // 2. Panneau de Droite (Journal d'Exécution)
+        logPanel.innerHTML = '<h4>Journal d\'Exécution Détaillé</h4>';
+        resultData.log.forEach(log => {
+            const logEntry = document.createElement('span');
+            logEntry.className = `log-entry ${log.type}`;
+            logEntry.textContent = log.message;
+            logPanel.appendChild(logEntry);
+        });
+
+        // 3. Rendu des Steps/Actions dans la vue de Log (Simule le mode détaillé)
+        const cerberusEditorRun = document.getElementById('cerberus-editor-run');
+        cerberusEditorRun.style.display = 'flex'; 
+        
+        const stepsContainer = document.createElement('div');
+        const actionsContainer = document.createElement('div');
+        
+        cerberusEditorRun.innerHTML = ''; 
+
+        cerberusEditorRun.appendChild(stepsContainer);
+        cerberusEditorRun.appendChild(actionsContainer);
+        
+        stepsContainer.className = 'steps-container';
+        actionsContainer.className = 'actions-container';
+        
+        // SÉLECTION DU STEP ACTIF (pour le panneau des actions)
+        let activeStepForRun = scenario.steps[0];
+        // Trouvez le dernier Step en OK ou le premier KO/FA pour le mettre en focus par défaut
+        for (let i = 0; i < resultData.stepsStatus.length; i++) {
+            if (resultData.stepsStatus[i] === 'KO' || resultData.stepsStatus[i] === 'FA') {
+                activeStepForRun = scenario.steps[i];
+                activeStepIndex = i; // Met à jour l'index actif pour les actions
+                break;
+            } else if (resultData.stepsStatus[i] === 'OK') {
+                 activeStepForRun = scenario.steps[i];
+                 activeStepIndex = i; // Si tout est OK, le dernier est actif
+            }
+        }
+        
+        // Rendu des Steps (Bordure Type + Fond Statut)
+        stepsContainer.innerHTML = '<h4>Étapes Fonctionnelles (Steps Gherkin)</h4>';
+        scenario.steps.forEach((step, index) => {
+            const status = resultData.stepsStatus[index] || 'FA'; 
+            const stepBlock = document.createElement('div');
+            // RUN-OK/KO/FA gère uniquement le background
+            stepBlock.className = `step-block RUN-${status} ${index === activeStepIndex ? 'active' : ''}`;
+            
+             stepBlock.addEventListener('click', () => {
+                activeStepIndex = index;
+                // Re-rendu de la vue Run pour mettre à jour les actions du step sélectionné
+                renderQualiSphere(activeStatusKey, activeExecutionStatus); 
+            });
+            
+            stepBlock.innerHTML = `
+                <span class="cerberus-role">Statut : ${status}</span>
+                <strong>Step ${index + 1}</strong>
+                <div class="gherkin-ref">${step.gherkin}</div>
+            `;
+            stepsContainer.appendChild(stepBlock);
+        });
+
+        // Rendu des Actions/Contrôles (Bordure Type + Fond Statut)
+        actionsContainer.innerHTML = '<h4>Actions (Bleu) & Contrôles (Vert)</h4>';
+        const actionList = document.createElement('ul');
+        actionList.className = 'action-list';
+
+        activeStepForRun.actions.forEach((action) => {
+            const isControl = action.type === 'CONTROL';
+            const status = resultData.stepsStatus[activeStepIndex] || 'FA'; // Le statut du Step actif s'applique à ses actions
+            
+            const itemClass = isControl ? 'action-item-control' : 'action-item-action';
+            const keywordClass = isControl ? 'action-keyword-control' : 'action-keyword-action';
+            const icon = isControl ? 'Contrôle :' : 'Action :';
+            
+            const actionItem = document.createElement('li');
+            // RUN-OK/KO/FA gère uniquement le background
+            actionItem.className = `action-item RUN-${status} ${itemClass}`;
+            actionItem.setAttribute('data-keyword', action.keyword);
+            actionItem.style.cursor = 'default';
+
+            let paramsHtml = '';
+            if (action.params && action.params.length > 0) {
+                paramsHtml = '<ul>';
+                action.params.forEach(param => {
+                    paramsHtml += `<li><strong>${param.name}:</strong> ${param.value}</li>`;
+                });
+                paramsHtml += '</ul>';
+            }
+
+            actionItem.innerHTML = `
+                <span class="${keywordClass}">${icon} ${action.keyword}</span>
+                <p>${action.desc}</p>
+                ${paramsHtml} 
+            `;
+            actionList.appendChild(actionItem);
+        });
+        actionsContainer.appendChild(actionList);
+    }
+
+
+    // Fonctions de support (non modifiées en substance)
+    function renderAzdoContent(scenario) {
+        document.getElementById('azdo-us-id').textContent = scenario.id;
+        document.getElementById('azdo-title-content-h4').textContent = scenario.title;
+        document.getElementById('azdo-desc-content').innerHTML = scenario.desc;
+        document.getElementById('azdo-ca-content').innerHTML = scenario.cas;
+    }
+
+    function updateQaBlocks(statusKey) {
+        const statusInfoCard = document.getElementById('status-info-card');
+        const statusMessageQA = document.getElementById('status-message-qa');
+        const statusActionQA = document.getElementById('status-action-qa');
+        
+        document.querySelectorAll('.us-status-item').forEach(item => item.classList.remove('active-status'));
+        const activeStatusPill = document.getElementById(`status-${statusKey}`);
+        if(activeStatusPill) {
+            activeStatusPill.classList.add('active-status');
+        }
+
+        statusInfoCard.className = 'qa-info-block'; 
+        statusInfoCard.classList.add('status-' + statusKey.toLowerCase());
+        
+        const statusInfo = statusMessages[statusKey];
+        if (statusInfo) {
+            statusMessageQA.innerHTML = statusInfo.message;
+            statusActionQA.innerHTML = statusInfo.action;
+        }
+
+        document.querySelectorAll('.qa-info-block.standard').forEach(block => {
+            block.style.display = 'none';
+        });
+        
+        document.querySelectorAll('.qa-toggle-link').forEach(link => {
+             let label;
+            if (link.dataset.qaTarget.includes('title')) {
+                label = ' sur le Titre';
+            } else if (link.dataset.qaTarget.includes('desc')) {
+                label = ' sur la Description';
+            } else if (link.dataset.qaTarget.includes('ca')) {
+                label = ' sur les Critères d\'Acceptation';
+            } 
+            link.innerHTML = 'Afficher l\'Analyse QA / Impact Test' + label; 
+            link.classList.remove('qa-active');
+        });
+        
+        statusInfoCard.style.display = 'block';
+    }
+
+    function displayTechnicalCode(keyword) {
+        const codeContainer = document.getElementById('technical-code-container');
+        const codeBlock = document.getElementById('technical-code');
+        
+        codeBlock.innerHTML = codeSnippets[keyword] || `<span class="comment"># Code non disponible pour cette commande.</span>`;
+        codeContainer.style.display = 'block';
+
+        setTimeout(() => { codeContainer.style.opacity = '1'; }, 10);
+    }
+
+    // Gestion des clics
+    document.addEventListener('click', function(e) {
+        // Cible A: Les liens d'analyse QA (violet)
+        if (e.target.classList.contains('qa-toggle-link')) {
+            e.preventDefault();
+            const targetId = e.target.dataset.qaTarget;
+            const targetBlock = document.getElementById(targetId);
+            
+            let label;
+            if (e.target.dataset.qaTarget.includes('title')) {
+                label = ' sur le Titre';
+            } else if (e.target.dataset.qaTarget.includes('desc')) {
+                label = ' sur la Description';
+            } else if (e.target.dataset.qaTarget.includes('ca')) {
+                label = ' sur les Critères d\'Acceptation';
+            } else {
+                label = '';
+            }
+
+            if (targetBlock.style.display === 'none' || targetBlock.style.display === '') {
+                targetBlock.style.display = 'block';
+                e.target.innerHTML = 'Cacher l\'Analyse QA / Impact Test' + label; 
+                e.target.classList.add('qa-active');
+            } else {
+                targetBlock.style.display = 'none';
+                e.target.innerHTML = 'Afficher l\'Analyse QA / Impact Test' + label;
+                e.target.classList.remove('qa-active');
+            }
+        }
+        
+        // Cible B: Les pilules de statut
+        if (e.target.classList.contains('us-status-item')) {
+             e.preventDefault();
+            const newStatus = e.target.id.split('-')[1]; 
+            
+            if (newStatus === activeStatusKey) {
+                // Si l'utilisateur clique sur le statut déjà actif
+                if (newStatus === 'InTest') {
+                    // Pour InTest, on alterne entre KO et FA à chaque clic pour la démo
+                    let nextExecutionStatus = activeExecutionStatus === 'KO' ? 'FA' : 'KO';
+                    renderQualiSphere(newStatus, nextExecutionStatus);
+                } else if (newStatus === 'Done') {
+                     // Pour Done, on n'a qu'un état (OK)
+                     renderQualiSphere(newStatus, 'OK');
+                } else {
+                    // Pour les autres, on alterne la visibilité de la carte d'info
+                    const targetBlock = document.getElementById('status-info-card');
+                    if (targetBlock.style.display === 'block') {
+                        targetBlock.style.display = 'none';
+                    } else {
+                        targetBlock.style.display = 'block';
+                    }
+                }
+            } else {
+                // Déterminer l'état d'exécution Cerberus à simuler pour le nouveau statut
+                let simulatedExecutionStatus = 'OK'; 
+                if (newStatus === 'InTest') {
+                    // Initialisation en KO
+                    simulatedExecutionStatus = 'KO'; 
+                } else if (newStatus === 'Done') {
+                     // En Done, succès
+                    simulatedExecutionStatus = 'OK'; 
+                } else if (newStatus === 'InDev') {
+                    // En InDev, on revient au mode édition
+                    simulatedExecutionStatus = 'FA'; 
+                }
+
+                // Changer de statut
+                activeStepIndex = 0; // Réinitialiser le step actif
+                renderQualiSphere(newStatus, simulatedExecutionStatus); 
+            }
+        }
+    });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.us-tab').forEach(tab => {
+            tab.querySelector('.us-title').textContent = baseScenario.title;
+            tab.querySelector('.us-id').textContent = baseScenario.id;
+        });
+        
+        // Initialiser avec un statut de départ (InTest - KO) pour montrer un échec KO
+        renderQualiSphere('InTest', 'KO'); 
+    });
+</script>
+</body>
+</html>
